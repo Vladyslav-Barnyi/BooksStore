@@ -12,3 +12,4 @@ C:\Users\vbarnyi\RiderProjects\BooksStore\BooksStoreEntities\obj\Debug\net8.0\Bo
 C:\Users\vbarnyi\RiderProjects\BooksStore\BooksStoreEntities\obj\Debug\net8.0\ref\BooksStoreEntities.dll
 C:\Users\vbarnyi\RiderProjects\BooksStore\BooksStoreEntities\bin\Debug\net8.0\BooksStoreEntities.runtimeconfig.json
 C:\Users\vbarnyi\RiderProjects\BooksStore\BooksStoreEntities\obj\Debug\net8.0\BooksStoreEntities.genruntimeconfig.cache
+C:\Users\vbarnyi\RiderProjects\BooksStore\BooksStoreEntities\obj\Debug\net8.0\BooksStoreEntities.sourcelink.json

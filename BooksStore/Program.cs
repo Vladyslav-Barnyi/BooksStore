@@ -1,9 +1,12 @@
+using BooksStore.ErrorHandler;
 using BooksStore.Repositories;
 using BooksStore.Repositories.Interfaces;
 using BooksStore.Services;
 using BooksStore.Services.Interfaces;
 using BooksStoreEntities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var service = builder.Services;
@@ -35,15 +38,14 @@ service.AddScoped<IBookRepository, BookRepository>();
 service.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 service.AddScoped<IOrderRepository, OrderRepository>();
 
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+app.UseMiddleware<CustomExceptionHandler>();
+
 app.MapControllers();
 app.Run();

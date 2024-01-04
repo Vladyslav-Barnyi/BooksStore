@@ -6,6 +6,7 @@ using BooksStore.Services.Interfaces;
 using BooksStoreEntities.Entities;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyModel.Resolution;
 
 namespace BooksStore.Controllers;
 
@@ -13,6 +14,24 @@ namespace BooksStore.Controllers;
 [Route("api/[controller]/[action]")]
 public class AuthorsController(IAuthorService authorService, IBookService bookService) : ControllerBase
 {
+    [HttpGet("throw")]
+    public ActionResult ThrowError()
+    {
+        throw new InvalidOperationException("This is a test exception to check the custom error handler middleware.");
+    }
+
+    [HttpGet("unauthorized")]
+    public ActionResult ThrowUnauthorized()
+    {
+        throw new UnauthorizedAccessException("You are not authorized to access this resource.");
+    }
+
+    [HttpGet("badrequest")]
+    public ActionResult ThrowBadRequest()
+    {
+        throw new BadHttpRequestException("The request is incorrectly formatted.");
+    }
+    
     [HttpGet]
     public async Task<ActionResult<List<GetAuthorResponse>>> GetAuthors([FromQuery] PaginationFilter filter,
         CancellationToken ct)
@@ -23,7 +42,6 @@ public class AuthorsController(IAuthorService authorService, IBookService bookSe
 
         return Ok(response);
     }
- 
 
     [HttpGet("{authorId}")]
     public async Task<ActionResult<Author>> GetAuthor(Guid authorId, 
